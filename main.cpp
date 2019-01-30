@@ -19,8 +19,6 @@ extern "C" {
 #define SCREEN_HEIGHT	480
 #define GRUBOSC_RAMKI 20
 
-//zrodla dodac
-//jesli po lewej stronie sie odbije pilka - inny kat (bardziej w lewo)
 
 struct Gra {
 	int etap = 1;
@@ -30,7 +28,7 @@ struct Gra {
 Gra stan;
 // narysowanie napisu txt na powierzchni screen, zaczynajπc od punktu (x, y)
 // charset to bitmapa 128x128 zawierajπca znaki
-//nie autorskie
+//zrodlo https://ideone.com/fork/Q6Y5oB
 void DrawString(SDL_Surface *screen, int x, int y, const char *text,
                 SDL_Surface *charset) {
 	int px, py, c;
@@ -55,6 +53,7 @@ void DrawString(SDL_Surface *screen, int x, int y, const char *text,
 
 // narysowanie na ekranie screen powierzchni sprite w punkcie (x, y)
 // (x, y) to punkt úrodka obrazka sprite na ekranie
+//zrodlo:https://ideone.com/fork/Q6Y5oB
 void DrawSurface(SDL_Surface *screen, SDL_Surface *sprite, int x, int y) {
 	SDL_Rect dest;
 	dest.x = x - sprite->w / 2;
@@ -64,7 +63,7 @@ void DrawSurface(SDL_Surface *screen, SDL_Surface *sprite, int x, int y) {
 	SDL_BlitSurface(sprite, NULL, screen, &dest);
 };
 
-
+//https://ideone.com/fork/Q6Y5oB
 void DrawPixel(SDL_Surface *surface, int x, int y, Uint32 color) {
 	int bpp = surface->format->BytesPerPixel;
 	Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
@@ -74,6 +73,7 @@ void DrawPixel(SDL_Surface *surface, int x, int y, Uint32 color) {
 
 // rysowanie linii o d≥ugoúci l w pionie (gdy dx = 0, dy = 1) 
 // bπdü poziomie (gdy dx = 1, dy = 0)
+//https://ideone.com/fork/Q6Y5oB
 void DrawLine(SDL_Surface *screen, int x, int y, int l, int dx, int dy, Uint32 color) {
 	for(int i = 0; i < l; i++) {
 		DrawPixel(screen, x, y, color);
@@ -82,7 +82,7 @@ void DrawLine(SDL_Surface *screen, int x, int y, int l, int dx, int dy, Uint32 c
 		};
 	};
 
-
+//https://ideone.com/fork/Q6Y5oB
 void DrawRectangle(SDL_Surface *screen, int x, int y, int l, int k,
                    Uint32 outlineColor, Uint32 fillColor) {
 	int i;
@@ -173,7 +173,7 @@ public:
 		if (this->x + GRUBOSC_RAMKI < SCREEN_WIDTH)
 		{
 			kat_x *= -1;
-			//this->x = SCREEN_WIDTH - GRUBOSC_RAMKI;
+			
 		}
 		//odbicie lewa 
 		if (this->x > GRUBOSC_RAMKI)
@@ -254,9 +254,15 @@ public:
 		for (int i = 0; i < 100; i++) {
 			if (klocki[i] != NULL) {
 				/*Uderzenie w dolna sciane klocka*/
-				if (int(pilka.y - 3) == klocki[i]->y + klocki[i]->length_Y) {//wysookosc
+				if (int(pilka.y - 3) == klocki[i]->y + klocki[i]->length_Y) {//wysokosc
 					if (int(pilka.x) >= klocki[i]->x && int(pilka.x) <= klocki[i]->x + klocki[i]->length_X) { 
 						delete klocki[i];
+						//losowanie kata
+						double punkt_uderzenia_x = klocki[i]->x + klocki[i]->length_X - int(pilka.x);
+						double kat_nowy_x = punkt_uderzenia_x / klocki[i]->length_X;
+						pilka.kat_x = kat_nowy_x;
+						pilka.kat_y = 1 - kat_nowy_x;
+
 						klocki[i] = NULL;
 						pilka.odbicie_poziomo();
 						stan.punkty += 10;
@@ -318,6 +324,7 @@ int main(int argc, char **argv) {
 	SDL_Renderer *renderer;
 
 	/*Sprawdza czy sdl sie inicjalizuje*/
+	//https://ideone.com/fork/Q6Y5oB
 	if(SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		printf("SDL_Init error: %s\n", SDL_GetError());
 		return 1;
@@ -336,7 +343,6 @@ int main(int argc, char **argv) {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 	SDL_SetWindowTitle(window, "s14222");
-
 
 	screen = SDL_CreateRGBSurface(0, SCREEN_WIDTH, SCREEN_HEIGHT, 32,
 	                              0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
@@ -361,8 +367,8 @@ int main(int argc, char **argv) {
 
 	SDL_ShowCursor(SDL_DISABLE);
 
+	//https://ideone.com/fork/Q6Y5oB
 	charset = SDL_LoadBMP("./cs8x8.bmp");
-
 	if(charset == NULL) {
 		printf("SDL_LoadBMP(cs8x8.bmp) error: %s\n", SDL_GetError());
 		SDL_FreeSurface(screen);
@@ -460,11 +466,13 @@ int main(int argc, char **argv) {
 				paletka.left(delta);
 			}
 		}
-		/*wyswietlenie zaktualizowanego screenu*/
+		/*wyswietlenie zaktualizowanego screenu
+		https://ideone.com/fork/Q6Y5oB */
 		SDL_UpdateTexture(scrtex, NULL, screen->pixels, screen->pitch);
 		SDL_RenderCopy(renderer, scrtex, NULL, NULL);
 		SDL_RenderPresent(renderer);
 	
+		//przerobiony - https://ideone.com/fork/Q6Y5oB
 		while(SDL_PollEvent(&event)) {
 			switch(event.type) {
 				case SDL_KEYDOWN:
