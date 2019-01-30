@@ -1,0 +1,22 @@
+﻿  main.cpp
+d:\studia\sgd\projekt\arkanoido\main.cpp(119): warning C4244: 'argument': conversion from 'double' to 'Uint32', possible loss of data
+d:\studia\sgd\projekt\arkanoido\main.cpp(119): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+d:\studia\sgd\projekt\arkanoido\main.cpp(154): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+d:\studia\sgd\projekt\arkanoido\main.cpp(214): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+d:\studia\sgd\projekt\arkanoido\main.cpp(305): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\studia\sgd\projekt\arkanoido\main.cpp(425): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
+d:\studia\sgd\projekt\arkanoido\main.cpp(445): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
+d:\studia\sgd\projekt\arkanoido\main.cpp(447): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
+  projekt2vs15.vcxproj -> D:\STUDIA\SGD\Projekt\Arkanoido\Debug\projekt2vs15.exe
+  projekt2vs15.vcxproj -> D:\STUDIA\SGD\Projekt\Arkanoido\Debug\projekt2vs15.pdb (Full PDB)
+  D:\STUDIA\SGD\Projekt\Arkanoido\sdl\winlib15\concrt140.dll
+  D:\STUDIA\SGD\Projekt\Arkanoido\sdl\winlib15\SDL2.dll
+  D:\STUDIA\SGD\Projekt\Arkanoido\sdl\winlib15\vccorlib140.dll
+  D:\STUDIA\SGD\Projekt\Arkanoido\sdl\winlib15\vcruntime140.dll
+          4 file(s) copied.
+  D:\STUDIA\SGD\Projekt\Arkanoido\ball.bmp
+  D:\STUDIA\SGD\Projekt\Arkanoido\cs8x8.bmp
+          2 file(s) copied.

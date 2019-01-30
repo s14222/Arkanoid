@@ -1,0 +1,2 @@
+﻿sdl2main.lib(SDL_windows_main.obj) : error LNK2001: unresolved external symbol __imp____iob_func
+C:\Users\Work\Desktop\Tetris\Release\projekt2vs13.exe : fatal error LNK1120: 1 unresolved externals
